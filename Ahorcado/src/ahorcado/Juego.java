@@ -182,6 +182,7 @@ public class Juego extends javax.swing.JFrame {
 
     private void IngresarPalabraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarPalabraMouseClicked
         Palabra = PalabraGrafica.getText();
+        ingresarPalabra();
         // TODO add your handling code here:
     }//GEN-LAST:event_IngresarPalabraMouseClicked
 
