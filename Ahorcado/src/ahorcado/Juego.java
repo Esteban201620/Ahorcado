@@ -10,25 +10,60 @@ package ahorcado;
  * @author Estudiantes
  */
 public class Juego extends javax.swing.JFrame {
-    int Turno=8;
+
+    Jugador miJugador;
+    int Turno = 8;
     String Palabra;
     char LetrasDePalabra[];
     int numeroDeLetras;
-    
+    char Letra;
+    char LetrasDePalabraImprimir[];
+
     /**
      * Creates new form Juego
      */
     public Juego() {
         initComponents();
     }
-    
-    void ingresarPalabra(){
-        LetrasDePalabra=Palabra.toCharArray();
-        numeroDeLetras=LetrasDePalabra.length;
+
+    void ingresarPalabra() {
+        Letra = miJugador.letra;
+        LetrasDePalabra = Palabra.toCharArray();
+        numeroDeLetras = LetrasDePalabra.length;
+        for (int j = 0; j < numeroDeLetras; j++) {
+            LetrasDePalabraImprimir[j] = '$';
+        }
+
     }
-    void verificarLetra(){
+
+    int verificarLetra() {
+        for (int i = 0; i < numeroDeLetras; i++) {
+            if (LetrasDePalabra[i] == Letra && Turno > 0) {
+                LetrasDePalabraImprimir[i] = Letra;
+                return 0;
+            } else {
+                if (LetrasDePalabra[i] != Letra && Turno > 0) {
+                    Turno -= 1;
+                    return 1;
+                }
+            }
+        }
         
+        return 3;
     }
+
+    void imprimirLetra() {
+        switch (this.verificarLetra()) {
+            case 0:
+                imprimir.setText(LetrasDePalabraImprimir.toString());
+                LetraIngresada.setText("");
+                break;
+            case 1:
+                LetraIngresada.setText("");
+                break;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,21 +73,123 @@ public class Juego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PalabraGrafica = new javax.swing.JTextField();
+        LetraIngresada = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        IngresarPalabra = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        imprimir = new javax.swing.JLabel();
+        IngresarLetra = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        PalabraGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PalabraGraficaActionPerformed(evt);
+            }
+        });
+
+        LetraIngresada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LetraIngresadaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Palabra en juego:");
+
+        jLabel2.setText("Ingrese una letra:");
+
+        IngresarPalabra.setText("OK");
+        IngresarPalabra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IngresarPalabraMouseClicked(evt);
+            }
+        });
+
+        imprimir.setText("jLabel4");
+
+        IngresarLetra.setText("Agregar");
+        IngresarLetra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IngresarLetraMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(175, 175, 175))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(118, 118, 118)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LetraIngresada, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addComponent(IngresarLetra))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PalabraGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(IngresarPalabra))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(imprimir)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PalabraGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IngresarPalabra))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel2)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LetraIngresada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IngresarLetra))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imprimir)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PalabraGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PalabraGraficaActionPerformed
+
+    }//GEN-LAST:event_PalabraGraficaActionPerformed
+
+    private void LetraIngresadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LetraIngresadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LetraIngresadaActionPerformed
+
+    private void IngresarPalabraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarPalabraMouseClicked
+        Palabra = PalabraGrafica.getText();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IngresarPalabraMouseClicked
+
+    private void IngresarLetraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarLetraMouseClicked
+        this.Letra = IngresarLetra.getText().charAt(0);
+        imprimirLetra();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IngresarLetraMouseClicked
 
     /**
      * @param args the command line arguments
@@ -90,5 +227,13 @@ public class Juego extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton IngresarLetra;
+    private javax.swing.JButton IngresarPalabra;
+    private javax.swing.JTextField LetraIngresada;
+    private javax.swing.JTextField PalabraGrafica;
+    private javax.swing.JLabel imprimir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
