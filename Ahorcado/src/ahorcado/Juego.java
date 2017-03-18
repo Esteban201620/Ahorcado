@@ -11,23 +11,29 @@ package ahorcado;
  */
 public class Juego extends javax.swing.JFrame {
 
-    Jugador miJugador;
+    Jugador miJugador= new Jugador();
     int Turno = 8;
     String Palabra;
     char LetrasDePalabra[];
-    int numeroDeLetras;
+    int numeroDeLetras=0;
     char Letra;
     char LetrasDePalabraImprimir[];
-
+    
     /**
      * Creates new form Juego
      */
     public Juego() {
+        //ingresarPalabra();
         initComponents();
+    }
+    void ingresarLetra(){
+        Letra = miJugador.letra;
     }
 
     void ingresarPalabra() {
-        Letra = miJugador.letra;
+        Turno=8;
+        PalabraGrafica.setEnabled(true);
+        IngresarPalabra.setEnabled(true);
         LetrasDePalabra = Palabra.toCharArray();
         numeroDeLetras = LetrasDePalabra.length;
         for (int j = 0; j < numeroDeLetras; j++) {
@@ -183,11 +189,15 @@ public class Juego extends javax.swing.JFrame {
     private void IngresarPalabraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarPalabraMouseClicked
         Palabra = PalabraGrafica.getText();
         ingresarPalabra();
+        PalabraGrafica.setText("");
+        PalabraGrafica.setEnabled(false);
+        IngresarPalabra.setEnabled(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_IngresarPalabraMouseClicked
 
     private void IngresarLetraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarLetraMouseClicked
-        this.Letra = IngresarLetra.getText().charAt(0);
+        this.miJugador.letra = IngresarLetra.getText().charAt(0);
+        verificarLetra();
         imprimirLetra();
         // TODO add your handling code here:
     }//GEN-LAST:event_IngresarLetraMouseClicked
