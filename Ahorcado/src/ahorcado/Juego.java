@@ -13,10 +13,10 @@ public class Juego extends javax.swing.JFrame {
 
     Jugador miJugador= new Jugador();
     int Turno = 8;
-    String Palabra;
+    String Palabra="";
     char LetrasDePalabra[];
     int numeroDeLetras=0;
-    char Letra;
+    char Letra='a';
     char LetrasDePalabraImprimir[];
     
     /**
