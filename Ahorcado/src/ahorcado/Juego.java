@@ -12,11 +12,11 @@ package ahorcado;
 public class Juego extends javax.swing.JFrame {
 
     Jugador miJugador= new Jugador();
-    int Turno = 8;
-    String Palabra="";
+    int Turno;
+    String Palabra;
     char LetrasDePalabra[];
     int numeroDeLetras=0;
-    char Letra='a';
+    char Letra;
     char LetrasDePalabraImprimir[];
     
     /**
@@ -38,11 +38,12 @@ public class Juego extends javax.swing.JFrame {
         numeroDeLetras = LetrasDePalabra.length;
         for (int j = 0; j < numeroDeLetras; j++) {
             LetrasDePalabraImprimir[j] = '$';
+            imprimir.setText(LetrasDePalabraImprimir.toString());
         }
 
     }
 
-    int verificarLetra() {
+    int verificarLetra(char Letra) {
         for (int i = 0; i < numeroDeLetras; i++) {
             if (LetrasDePalabra[i] == Letra && Turno > 0) {
                 LetrasDePalabraImprimir[i] = Letra;
@@ -59,7 +60,7 @@ public class Juego extends javax.swing.JFrame {
     }
 
     void imprimirLetra() {
-        switch (this.verificarLetra()) {
+        switch (this.verificarLetra(Letra)) {
             case 0:
                 imprimir.setText(LetrasDePalabraImprimir.toString());
                 LetraIngresada.setText("");
@@ -197,7 +198,8 @@ public class Juego extends javax.swing.JFrame {
 
     private void IngresarLetraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarLetraMouseClicked
         this.miJugador.letra = IngresarLetra.getText().charAt(0);
-        verificarLetra();
+        ingresarLetra();
+        verificarLetra(Letra);
         imprimirLetra();
         // TODO add your handling code here:
     }//GEN-LAST:event_IngresarLetraMouseClicked
