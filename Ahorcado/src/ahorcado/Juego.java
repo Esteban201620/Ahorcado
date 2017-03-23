@@ -37,10 +37,9 @@ public class Juego extends javax.swing.JFrame {
         LetrasDePalabra = Palabra.toCharArray();
         numeroDeLetras = LetrasDePalabra.length;
         for (int j = 0; j < numeroDeLetras; j++) {
-            LetrasDePalabraImprimir[j] = '$';
+            LetrasDePalabraImprimir[j] = '-';
+          }
             imprimir.setText(LetrasDePalabraImprimir.toString());
-        }
-
     }
 
     int verificarLetra(char Letra) {
@@ -69,6 +68,17 @@ public class Juego extends javax.swing.JFrame {
                 LetraIngresada.setText("");
                 break;
         }
+    }
+    void verificarPalabra(){
+        for (int k=0;k<numeroDeLetras;k++){
+            if (LetrasDePalabraImprimir==LetrasDePalabra){
+                
+            }
+        }
+        
+        
+        
+        
     }
 
     /**
